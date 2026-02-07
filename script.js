@@ -2,6 +2,15 @@ let currentLevel = 0;
 let timerInterval;
 let timeLeft;
 let timerDisabled = false;
+let totalScore = 0;
+if (localStorage.getItem("totalScore")) {
+    totalScore = parseInt(localStorage.getItem("totalScore"));
+}
+
+if (localStorage.getItem("currentLevel")) {
+    currentLevel = parseInt(localStorage.getItem("currentLevel"));
+}
+
 
 
 function loadLevel() {
@@ -9,6 +18,11 @@ function loadLevel() {
 
     document.getElementById("level-title").innerText = level.title;
     document.getElementById("scenario").innerText = level.scenario;
+   document.getElementById("totalScore").innerText = totalScore;
+document.getElementById("rankTitle").innerText = getRank(totalScore);
+document.getElementById("levelScore").innerText = 0;
+
+
     // TASKS handling (supports old + new levels)
 const taskList = document.getElementById("tasks");
 taskList.innerHTML = "";
@@ -38,6 +52,8 @@ if (level.tasks) {
 
     document.getElementById("user-input").value = "";
     document.getElementById("solution").style.display = "none";
+    document.getElementById("rankTitle").innerText = getRank(totalScore);
+
 
     // PET fallback
     document.getElementById("pet").innerText = level.pet || "None";
@@ -91,8 +107,27 @@ if (level.combinations) {
     comboDiv.innerHTML = ""; // CLEAR old combinations
 }
 
+// Tutorial handling
+const tutorialBox = document.getElementById("tutorialBox");
+const tutorialStepsList = document.getElementById("tutorialStepsList");
 
+if (level.tutorial) {
+    tutorialBox.style.display = "block";
+    tutorialStepsList.innerHTML = "";
 
+    level.tutorialSteps.forEach(step => {
+        const li = document.createElement("li");
+        li.innerText = step;
+        tutorialStepsList.appendChild(li);
+    });
+} else {
+    tutorialBox.style.display = "none";
+}
+
+}
+
+function showExample() {
+    document.getElementById("user-input").value = levels[currentLevel].exampleAnswer;
 }
 
 function startTimer(duration) {
@@ -113,9 +148,34 @@ function startTimer(duration) {
 
 function submitAnswer() {
     clearInterval(timerInterval);
+
+    const userText = document.getElementById("user-input").value.toLowerCase();
+    const level = levels[currentLevel];
+    let levelScore = 0;
+
+    if (level.keywords) {
+        level.keywords.forEach(keyword => {
+            if (userText.includes(keyword.toLowerCase())) {
+                levelScore++;
+            }
+        });
+    }
+
+    totalScore += levelScore;
+
+    document.getElementById("levelScore").innerText = levelScore;
+    document.getElementById("totalScore").innerText = totalScore;
+    document.getElementById("rankTitle").innerText = getRank(totalScore);
+
+
     document.getElementById("solution").style.display = "block";
-    document.getElementById("solution-text").innerText = levels[currentLevel].solution;
+    document.getElementById("solution-text").innerText =
+        "Optimal Thinking:\n" + level.solution;
+
+    localStorage.setItem("totalScore", totalScore);
+localStorage.setItem("currentLevel", currentLevel);
 }
+
 
 function nextLevel() {
     currentLevel++;
@@ -248,3 +308,10 @@ window.onload = function () {
     loadLevel();
 };
 
+function getRank(score) {
+    if (score < 20) return "Beginner";
+    if (score < 50) return "Strategist";
+    if (score < 100) return "Leader";
+    if (score < 200) return "Mastermind";
+    return "Grand Architect";
+}

@@ -1,4 +1,25 @@
-const levels = [
+const levels = [{
+    title: "Level 0 – Tutorial",
+    scenario: "You must remove a rat from a storage room safely.",
+    task: "Understand how strategic thinking works.",
+    items: ["Broom", "Mace Spray", "Garlic Bread", "Sticky Substance"],
+    solution: "Use food to attract. Use tool to guide. Avoid messy methods.",
+    
+    tutorial: true,
+    tutorialSteps: [
+        "1. Understand the objective.",
+        "2. Identify useful vs harmful items.",
+        "3. Think about consequences.",
+        "4. Structure your plan clearly.",
+        "5. Avoid emotional or impulsive actions."
+    ],
+    
+    exampleAnswer: "I will use garlic bread to attract the rat and broom to guide it outside safely. I will avoid using mace because it causes mess.",
+    
+    keywords: ["garlic", "broom", "avoid", "safe"]
+},
+
+
     {
         mode: "dark",
         title: "Contain the Chaos",

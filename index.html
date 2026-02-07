@@ -30,6 +30,7 @@
 
             <h3>Time Remaining: <span id="timer">No Limit</span></h3>
 
+
             <h3>Budget: $<span id="money"></span></h3>
 
             <div id="combinations"></div>
@@ -42,10 +43,24 @@
 
 
             <h3>Your Plan:</h3>
+            <div id="tutorialBox" style="display:none; margin-top:20px; padding:15px; background:#222; border-radius:8px;">
+    <h3>Tutorial Guidance:</h3>
+    <ul id="tutorialStepsList"></ul>
+    <button onclick="showExample()">Show Example Answer</button>
+</div>
+
             <textarea id="user-input" rows="8" placeholder="Write your strategy here..."></textarea>
             <button onclick="previousLevel()">Previous Level</button>
             <button onclick="submitAnswer()">Submit</button>
             <button onclick="nextLevel()">Next Level</button>
+
+            <div style="background:#222; padding:15px; border-radius:8px; margin-top:15px;">
+    <h3>Performance</h3>
+    <p>Level Score: <span id="levelScore">0</span></p>
+    <p>Total Score: <span id="totalScore">0</span></p>
+    <p>Rank: <span id="rankTitle">Beginner</span></p>
+</div>
+
 
 
             <div id="solution" style="display: none;">
