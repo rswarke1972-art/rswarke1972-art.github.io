@@ -1,74 +1,47 @@
+/* ===============================
+   GLOBAL RESET
+================================= */
+
 body {
     margin: 0;
+    padding: 0;
     background-color: #111;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
-    padding: 40px;
 }
 
+/* ===============================
+   TOP NAV
+================================= */
 
-#game-container {
-    max-width: 800px;
-    margin: auto;
+.topNav {
+    text-align: center;
+    margin-top: 20px;
 }
 
-textarea {
-    width: 100%;
-    margin-top: 10px;
-    padding: 10px;
-}
-
-button {
-    margin-top: 15px;
-    padding: 10px 20px;
-    background-color: crimson;
-    border: none;
-    color: white;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: darkcyan;
-}
-
-#timer {
-    font-weight: bold;
-    color: orange;
-}
-
-#pet {
-    font-style: italic;
-    color: lightgreen;
-}
-
-
+/* ===============================
+   TITLE SCREEN
+================================= */
 
 #titleScreen {
-    position: fixed;   /* IMPORTANT */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
+    position: fixed;
+    inset: 0;
     background: url("thinking.jpg") no-repeat center center/cover;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
-    animation: fadeIn 1.5s ease-in;
     z-index: 9999;
 }
 
-
 .overlay {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: rgba(0, 0, 0, 0.6);
 }
 
 .titleContent {
     position: relative;
-    text-align: center;
+    text-align: center;   /* ONLY title screen centered */
     z-index: 2;
 }
 
@@ -88,8 +61,10 @@ button:hover {
     padding: 14px 40px;
     font-size: 18px;
     background: linear-gradient(45deg, crimson, darkred);
+    border: none;
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    color: white;
+    cursor: pointer;
     transition: 0.3s ease;
 }
 
@@ -98,42 +73,93 @@ button:hover {
     background: linear-gradient(45deg, #ff4d4d, crimson);
 }
 
+/* ===============================
+   GAME CONTAINER (LEFT ALIGNED)
+================================= */
 
-#titleScreen {
-    animation: fadeIn 1.5s ease-in;
+#gameContainer {
+    display: none;
+    max-width: 900px;
+    margin: 40px 0 40px 60px;  /* LEFT margin instead of auto */
+    padding: 20px;
+    text-align: left;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+
+/* Force all game text left */
+#gameContainer h1,
+#gameContainer h2,
+#gameContainer h3,
+#gameContainer p,
+#gameContainer ul,
+#gameContainer li,
+#gameContainer textarea {
+    text-align: left;
 }
 
-.hidden {
-    display: none !important;
+/* ===============================
+   BUTTONS
+================================= */
+
+button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: crimson;
+    border: none;
+    color: white;
+    cursor: pointer;
 }
+
+button:hover {
+    background-color: darkcyan;
+}
+
+/* ===============================
+   TEXTAREA
+================================= */
+
+textarea {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 15px;
+}
+
+/* ===============================
+   STATUS COLORS
+================================= */
+
+#timer {
+    font-weight: bold;
+    color: orange;
+}
+
+#pet {
+    font-style: italic;
+    color: lightgreen;
+}
+
+/* ===============================
+   POPUP PANEL
+================================= */
 
 #popupPanel {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: flex;
     justify-content: center;
     align-items: center;
     z-index: 10000;
 }
 
-
 .popupContent {
     background: #111;
-    color: white;
     padding: 30px;
     width: 60%;
     max-height: 80%;
     overflow-y: auto;
     border-radius: 8px;
-    text-align: left;
 }
 
 .closeBtn {
@@ -142,9 +168,26 @@ button:hover {
     cursor: pointer;
 }
 
+.hidden {
+    display: none !important;
+}
+
+/* ===============================
+   FOOTER
+================================= */
+
+footer {
+    text-align: center;
+    margin: 40px 0;
+}
+
+/* ===============================
+   MOBILE RESPONSIVE
+================================= */
+
 @media (max-width: 768px) {
 
-    body {
+    #gameContainer {
         padding: 15px;
     }
 
@@ -154,15 +197,9 @@ button:hover {
 
     .menuButtons button {
         width: 100%;
-        font-size: 18px;
     }
 
-    textarea {
-        font-size: 16px;
+    .titleContent h1 {
+        font-size: 2rem;
     }
-
-    h1 {
-        font-size: 1.8rem;
-    }
-
 }

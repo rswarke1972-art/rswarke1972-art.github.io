@@ -1,46 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Strategic Simulator
-            <div style="margin-top:20px;">
-    <a href="about.html" style="color:white; margin-right:20px;">About</a>
-    <a href="strategic-thinking.html" style="color:white; margin-right:20px;">Article</a>
-    <a href="contact.html" style="color:white;">Contact</a>
-</div>
 
-        </title>
-        <link rel="stylesheet" href="style.css">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2894207471217839"
-     crossorigin="anonymous"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategic Simulator</title>
 
-     <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GQD0DCPS10"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <link rel="stylesheet" href="style.css">
 
-  gtag('config', 'G-GQD0DCPS10');
-</script>
+    <!-- Google AdSense -->
+    <script async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2894207471217839"
+        crossorigin="anonymous"></script>
 
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GQD0DCPS10"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-GQD0DCPS10');
+    </script>
+</head>
 
-    </head>
-    <body>
+<body>
+
+    <!-- TOP NAV -->
+    <div class="topNav">
+        <a href="about.html">About</a>
+        <a href="strategic-thinking.html">Article</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <!-- TITLE SCREEN -->
+    <div id="titleScreen">
+        <div class="overlay"></div>
+
+        <div class="titleContent">
+            <h1>Leadership: The Moral Simulator</h1>
+            <p>100 Decisions. One Identity.</p>
+
+            <div class="gameDescription">
+                Leadership: The Moral Simulator is a strategic decision-making game
+                that challenges your ethics, leadership ability, and resource management
+                across 100 unique scenarios.
+            </div>
+
+            <div class="menuButtons">
+                <button onclick="continueGame()">Continue</button>
+                <button onclick="startNewGame()">Start New Game</button>
+                <button onclick="openHowToPlay()">How to Play</button>
+                <button onclick="openSettings()">Settings</button>
+                <button onclick="openCredits()">Credits</button>
+                <button onclick="exitGame()">Exit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- GAME WRAPPER (IMPORTANT) -->
+    <div class="gameWrapper">
+
+        <!-- GAME CONTENT -->
         <div id="gameContainer" style="display:none;">
+
             <button onclick="goToTitle()">Back to Title</button>
+
             <h1 id="level-title"></h1>
             <p id="scenario"></p>
+
             <h3>Tasks:</h3>
             <ul id="tasks"></ul>
-
 
             <h3>Available Plan:</h3>
             <ul id="items"></ul>
 
             <h3>Time Remaining: <span id="timer">No Limit</span></h3>
-
 
             <h3>Budget: $<span id="money"></span></h3>
 
@@ -52,82 +86,44 @@
             <h3>Available People:</h3>
             <ul id="people"></ul>
 
-
             <h3>Your Plan:</h3>
-            <div id="tutorialBox" style="display:none; margin-top:20px; padding:15px; background:#222; border-radius:8px;">
-    <h3>Tutorial Guidance:</h3>
-    <ul id="tutorialStepsList"></ul>
-    <button onclick="showExample()">Show Example Answer</button>
-</div>
+
+            <div id="tutorialBox" class="tutorialBox">
+                <h3>Tutorial Guidance:</h3>
+                <ul id="tutorialStepsList"></ul>
+                <button onclick="showExample()">Show Example Answer</button>
+            </div>
 
             <textarea id="user-input" rows="8" placeholder="Write your strategy here..."></textarea>
+
             <button onclick="previousLevel()">Previous Level</button>
             <button onclick="submitAnswer()">Submit</button>
             <button onclick="nextLevel()">Next Level</button>
 
-            <div style="background:#222; padding:15px; border-radius:8px; margin-top:15px;">
-    <h3>Performance</h3>
-    <p>Level Score: <span id="levelScore">0</span></p>
-    <p>Total Score: <span id="totalScore">0</span></p>
-    <p>Rank: <span id="rankTitle">Beginner</span></p>
-</div>
+            <div class="performanceBox">
+                <h3>Performance</h3>
+                <p>Level Score: <span id="levelScore">0</span></p>
+                <p>Total Score: <span id="totalScore">0</span></p>
+                <p>Rank: <span id="rankTitle">Beginner</span></p>
+            </div>
 
-
-
-            <div id="solution" style="display: none;">
+            <div id="solution" style="display:none;">
                 <h3>Optimal Thinking:</h3>
                 <p id="solution-text"></p>
             </div>
-        </div>
 
-        <script src="levels.js"></script>
-        <script src="script.js"></script>
-
-        <div id="titleScreen">
-    <div class="overlay"></div>
-
-    <div class="titleContent">
-        <h1>Leadership: The Moral Simulator</h1>
-        <p>100 Decisions. One Identity.</p>
-
-        <div style="
-max-width:650px;
-margin:auto;
-margin-top:20px;
-padding:15px;
-background:rgba(0,0,0,0.5);
-border-radius:8px;
-font-size:18px;
-line-height:1.6;
-">
-Leadership: The Moral Simulator is a strategic decision-making game
-that challenges your ethics, leadership ability, and resource management
-across 100 unique scenarios.
-</div>
-
-
-        <div class="menuButtons">
-    <button onclick="continueGame()">Continue</button>
-    <button onclick="startNewGame()">Start New Game</button>
-    <button onclick="openHowToPlay()">How to Play</button>
-    <button onclick="openSettings()">Settings</button>
-    <button onclick="openCredits()">Credits</button>
-    <button onclick="exitGame()">Exit</button>
         </div>
     </div>
 
-    <div id="popupPanel" class="hidden">
-    <div class="popupContent">
-        <span class="closeBtn" onclick="closePopup()">×</span>
-        <div id="popupText"></div>
-    </div>
-</div>
-</div>
+    <!-- FOOTER -->
+    <footer>
+        <a href="privacy.html">Privacy Policy</a>
+    </footer>
 
-<footer style="text-align:center; margin-top:40px;">
-    <a href="privacy.html" style="color:white;">Privacy Policy</a>
-</footer>
+    <script src="levels.js"></script>
+    <script src="script.js"></script>
+
+</body>
 
 
-    </body>
 </html>
